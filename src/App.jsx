@@ -9,7 +9,7 @@ function Loading() {
   return (
     <div className="flex justify-center items-center h-screen bg-white">
       <video
-        src="/public/loading-animation.mp4"
+        src="/loading-animation.mp4"
         autoPlay
         loop
         muted

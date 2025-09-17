@@ -86,7 +86,7 @@ export const NotFound = () => {
                             {/* Image container */}
                             <div className="relative bg-card/50 backdrop-blur-sm border border-primary/20 rounded-2xl p-4 card-hover">
                                 <img
-                                    src="./src/assets/404.jpg"
+                                    src="/404.jpg"
                                     alt="404 Error - Developer at computer with purple ambient lighting"
                                     className="w-full h-auto rounded-xl shadow-2xl"
                                     style={{
