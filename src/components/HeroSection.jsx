@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { ChevronDown, Download, Eye, Check } from 'lucide-react';
-import profileImage from '@/assets/viraj-profile.jpg';
+import profileImage from '@/assets/viraj-profile2.png';
 import resumePDF from '@/assets/Viraj_Induruwa.pdf';
 
 const texts = [
