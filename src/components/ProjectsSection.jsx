@@ -5,6 +5,7 @@ import { ArrowRight, ExternalLink, Github, X } from 'lucide-react';
 import cancerDetectiveImg from '@/assets/project-cancer-detective.png';
 import plantDiseaseImg from '@/assets/project-plant-disease.png';
 import cropRecognitionImg from '@/assets/project-crop-recognition.png';
+import omniFileAiImg from '@/assets/project-ominifile-ai.png';
 import smartSkinScanImg from '@/assets/project-smart-skin.png';
 import bookRecommendationImg from '@/assets/project-book-recommendation.png';
 import opencvProjectsImg from '@/assets/project-opencv.png';
@@ -57,6 +58,18 @@ export const ProjectsSection = () => {
     },
     {
       id: 4,
+      title: 'OmniFile AI',
+      category: 'AI Document Assistant',
+      description: 'Streamlit app powered by Google Gemini API for multi-format document understanding and smart analysis.',
+      longDescription: 'OmniFile AI is an intelligent document assistant that leverages the Google Gemini API to process and understand documents efficiently. It supports multiple file formats including PDFs, DOCX, PPTX, XLSX, and code files. Users can interact naturally with their documents, generate summaries, extract key insights, create visualizations, and collaborate in real-time. Built with Streamlit, it ensures fast, accurate, and secure AI-driven document analysis.',
+      technologies: ['Streamlit', 'Google Gemini API', 'Python', 'AI/ML', 'Data Visualization'],
+      image: omniFileAiImg,
+      color: 'from-green-500 to-teal-500',
+      githubUrl: 'https://github.com/Viraj-005/OmniFile-AI',
+      liveUrl: 'https://omnifile-ai.streamlit.app/'
+    },
+    {
+      id: 5,
       title: 'SmartSkin Scan',
       category: 'Medical AI',
       description: 'Streamlit app achieving 97.5% accuracy for skin cancer detection using EfficientNet-B3 and TensorFlow.',
@@ -68,7 +81,7 @@ export const ProjectsSection = () => {
       liveUrl: 'https://smartskin-scan.streamlit.app'
     },
     {
-      id: 5,
+      id: 6,
       title: 'Skin Cancer Detection API',
       category: 'Medical AI',
       description: 'AI-powered system for early detection of skin cancer from dermatological images using deep learning.',
@@ -80,7 +93,7 @@ export const ProjectsSection = () => {
       liveUrl: 'https://upgectsjud5oy5pyn7ewydmv2q0hslco.lambda-url.us-east-1.on.aws/' // Placeholder for live endpoints
     },
     {
-      id: 6,
+      id: 7,
       title: 'Leukemia Detection API',
       category: 'Medical AI',
       description: 'Machine learning model for detecting leukemia from blood cell microscopy images.',
@@ -92,7 +105,7 @@ export const ProjectsSection = () => {
       liveUrl: 'https://acqbhbxsfpxsdzuo245oinxcza0gbnio.lambda-url.us-east-1.on.aws/' // Placeholder for live endpoints
     },
     {
-      id: 7,
+      id: 8,
       title: 'Lung Cancer Detection API',
       category: 'Medical AI',
       description: 'Deep learning system for detecting lung cancer from CT scan images using advanced neural networks.',
@@ -104,7 +117,7 @@ export const ProjectsSection = () => {
       liveUrl: 'https://kubtah5wxifg5m33jaojdiuipy0omkyo.lambda-url.us-east-1.on.aws/' // Placeholder for live endpoints
     },
     {
-      id: 8,
+      id: 9,
       title: 'Book Recommendation Web App',
       category: 'AI/ML',
       description: 'Django app providing ML-powered personalized book recommendations using 20K+ ratings dataset.',
@@ -116,7 +129,7 @@ export const ProjectsSection = () => {
       liveUrl: null
     },
     {
-      id: 9,
+      id: 10,
       title: 'OpenCV Computer Vision Projects',
       category: 'Computer Vision',
       description: '5 computer vision applications including motion filtering, edge detection, OCR, text enhancement, and color detection.',
@@ -128,10 +141,10 @@ export const ProjectsSection = () => {
       liveUrl: null
     },
     {
-      id: 10,
+      id: 11,
       title: 'Frozen Land - Ice Cream Website',
       category: 'Web Development',
-      description: 'A beautifully designed ice cream ordering website built with PHP, CSS, and XAMPP. 🍦',
+      description: 'A beautifully designed ice cream ordering website built with PHP, CSS, and XAMPP.',
       longDescription: 'A visually appealing and functional ice cream ordering website that showcases web development skills using PHP for backend functionality, CSS for styling, and XAMPP for local development. The website provides a complete ordering system with an attractive user interface for ice cream lovers.',
       technologies: ['PHP', 'CSS', 'HTML', 'XAMPP', 'JavaScript'],
       image: frozenLandImg,
@@ -140,7 +153,7 @@ export const ProjectsSection = () => {
       liveUrl: null
     },
     {
-      id: 11,
+      id: 12,
       title: 'HappyBlock 2D Game',
       category: 'Game Development',
       description: 'A 2D game developed using Unity and C# showcasing game development and programming skills.',
