@@ -134,7 +134,7 @@ export const AboutSection = () => {
                       item.type === 'work'
                         ? 'bg-gradient-to-r from-primary to-purple-500'
                         : item.type === 'startup'
-                        ? 'bg-gradient-to-r from-yellow-500 to-orange-500'
+                        ? 'bg-gradient-to-r from-blue-800 to-purple-600'
                         : 'bg-gradient-to-r from-blue-500 to-cyan-500'
                     }`}>
                       {item.type === 'startup' ? (
