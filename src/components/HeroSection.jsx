@@ -109,8 +109,9 @@ export const HeroSection = () => {
 
           {/* Subtitle */}
           <p className="text-xl md:text-2xl mb-8 max-w-2xl mx-auto animate-fade-in-delay-2 opacity-0">
-            Currently an <span className="text-primary font-semibold">Intern Software Engineer</span> at 
+            Freelance <span className="text-primary font-semibold">Software Engineer</span> at 
             <span className="text-purple-500 font-semibold"> Sri Lanka Telecom</span>
+            <br/>Co-Founder of <span className="text-indigo-700 font-semibold">LOOPLAB</span>
           </p>
 
           {/* CTA Buttons */}

@@ -1,30 +1,33 @@
 import { useState } from 'react';
-import { Calendar, MapPin, Briefcase } from 'lucide-react';
+import { Calendar, MapPin, Briefcase, Rocket } from 'lucide-react';
 
 export const AboutSection = () => {
   const [isDragging, setIsDragging] = useState(false);
   
   const timeline = [
     {
-      year: '2025',
-      title: 'Intern Software Engineer',
-      company: 'Sri Lanka Telecom',
-      description: 'Working on enterprise software solutions and gaining valuable industry experience.',
+      year: '2025 - Present',
+      title: 'Freelance Software Engineer',
+      company: 'Sri Lanka Telecom (SLT)',
+      description:
+        'Continuing development of the Sales Incentive Automation System, including Manager Incentive module. Contributed to enterprise-level backend systems integrated with Azure AD authentication and Oracle databases. Modules successfully deployed within SLT intranet Linux server environment.',
       type: 'work'
     },
     {
-      year: '2024',
-      title: 'AI/ML Projects',
-      company: 'University Projects',
-      description: 'Developed multiple AI/ML applications including medical diagnosis and recommendation systems.',
-      type: 'project'
+      year: '2026',
+      title: 'Co-Founder',
+      company: 'LOOPLAB (PRIVATE) LIMITED',
+      description:
+        'Co-founded LOOPLAB with two partners and officially registered as a private company. Focused on building innovative AI-powered and full-stack digital solutions.',
+      type: 'startup'
     },
     {
-      year: '2024',
-      title: 'Full-Stack Development',
-      company: 'Personal Projects',
-      description: 'Started building web applications with modern technologies like React, Django, and FastAPI.',
-      type: 'learning'
+      year: '2025',
+      title: 'Intern Software Engineer',
+      company: 'Sri Lanka Telecom (SLT)',
+      description:
+        'Developed automated Sales Incentive and Dealer Commission calculation modules, replacing manual Excel workflows and improving operational efficiency by 80%.',
+      type: 'work'
     }
   ];
 
@@ -42,30 +45,32 @@ export const AboutSection = () => {
       
       <div className="container">
         <div className="max-w-6xl mx-auto">
+          
           {/* Section Title */}
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-5xl font-bold mb-12 text-center text-glow">
-                About <span className="text-primary"> Me</span>
+              About <span className="text-primary">Me</span>
             </h2>
             <p className="text-xl text-foreground/70 max-w-2xl mx-auto animate-fade-in-delay-1 opacity-0">
-              Passionate about creating innovative solutions through code and AI
+              Software Engineer | AI Enthusiast | Startup Co-Founder
             </p>
           </div>
 
           <div className="grid lg:grid-cols-2 gap-12 items-start">
+            
             {/* Bio Card */}
             <div className="bg-card border border-border p-8 rounded-2xl card-hover animate-fade-in-delay-2 opacity-0">
               <div className="mb-6">
                 <h3 className="text-2xl font-bold mb-4 text-primary">Hello! I'm Viraj</h3>
                 <p className="text-lg text-foreground/70 leading-relaxed mb-6">
-                  I'm a passionate software engineer with a deep interest in artificial intelligence 
-                  and machine learning. Currently pursuing my degree while gaining hands-on experience 
-                  as an intern at Sri Lanka Telecom.
+                  I'm a Software Engineer specializing in backend systems, AI-driven solutions, 
+                  and enterprise automation. I currently work with Sri Lanka Telecom while 
+                  also co-founding a technology startup.
                 </p>
                 <p className="text-lg text-foreground/70 leading-relaxed mb-6">
-                  My journey in tech started with curiosity about how machines can learn and make 
-                  decisions. This led me to explore various domains from web development to AI/ML, 
-                  always seeking to build solutions that make a positive impact.
+                  My work focuses on automating complex business processes, building scalable 
+                  APIs, and developing AI-powered applications that improve efficiency and 
+                  decision-making. I enjoy turning manual workflows into intelligent systems.
                 </p>
               </div>
 
@@ -81,11 +86,11 @@ export const AboutSection = () => {
                 </div>
               </div>
 
-              {/* Draggable Skills */}
+              {/* Specializations */}
               <div className="mt-8">
                 <h4 className="text-lg font-semibold mb-4 text-foreground">Specializations</h4>
                 <div className="flex flex-wrap gap-3">
-                  {['Backend Developer', 'Frontend Developer', 'AI/ML Engineer'].map((skill, index) => (
+                  {['Backend Engineering', 'Enterprise Automation', 'AI/ML Systems', 'Startup Development'].map((skill, index) => (
                     <div
                       key={skill}
                       draggable
@@ -111,8 +116,8 @@ export const AboutSection = () => {
               <h3 className="text-2xl font-bold mb-8 text-center lg:text-left text-primary">
                 Career Journey
               </h3>
+
               <div className="relative">
-                {/* Timeline Line */}
                 <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-gradient-to-b from-primary via-purple-500 to-blue-500"></div>
                 
                 {timeline.map((item, index) => (
@@ -126,11 +131,17 @@ export const AboutSection = () => {
                   >
                     {/* Timeline Dot */}
                     <div className={`relative z-10 w-16 h-16 rounded-full card-hover flex items-center justify-center ${
-                      item.type === 'work' ? 'bg-gradient-to-r from-primary to-purple-500' :
-                      item.type === 'project' ? 'bg-gradient-to-r from-purple-500 to-blue-500' :
-                      'bg-gradient-to-r from-blue-500 to-cyan-500'
+                      item.type === 'work'
+                        ? 'bg-gradient-to-r from-primary to-purple-500'
+                        : item.type === 'startup'
+                        ? 'bg-gradient-to-r from-yellow-500 to-orange-500'
+                        : 'bg-gradient-to-r from-blue-500 to-cyan-500'
                     }`}>
-                      <Calendar className="w-6 h-6 text-white" />
+                      {item.type === 'startup' ? (
+                        <Rocket className="w-6 h-6 text-white" />
+                      ) : (
+                        <Calendar className="w-6 h-6 text-white" />
+                      )}
                     </div>
                     
                     {/* Timeline Content */}
@@ -146,6 +157,7 @@ export const AboutSection = () => {
                 ))}
               </div>
             </div>
+
           </div>
         </div>
       </div>
