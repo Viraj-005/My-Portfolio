@@ -1,5 +1,7 @@
 import { useState } from 'react';
-import { Calendar, MapPin, Briefcase, Rocket } from 'lucide-react';
+import { Calendar, MapPin, Briefcase, Rocket, FileText } from 'lucide-react';
+import looplabCert from '@/assets/looplab-cert.jpg';
+
 
 export const AboutSection = () => {
   const [isDragging, setIsDragging] = useState(false);
@@ -151,7 +153,18 @@ export const AboutSection = () => {
                       </div>
                       <h4 className="text-lg font-semibold mb-1">{item.title}</h4>
                       <p className="text-purple-500 font-medium mb-2">{item.company}</p>
-                      <p className="text-foreground/70 text-sm">{item.description}</p>
+                      <p className="text-foreground/70 text-sm mb-4">{item.description}</p>
+                      {item.type === 'startup' && (
+                        <a 
+                          href={looplabCert} 
+                          target="_blank" 
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-2 text-sm font-medium text-primary hover:text-primary/80 transition-colors"
+                        >
+                          <FileText className="w-4 h-4" />
+                          View Registration Certificate
+                        </a>
+                      )}
                     </div>
                   </div>
                 ))}
