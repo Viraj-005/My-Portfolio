@@ -14,6 +14,9 @@ import leukemiaImg from '@/assets/project-leukemia.png';
 import lungCancerImg from '@/assets/project-lung-cancer.png';
 import frozenLandImg from '@/assets/project-frozen-land.png';
 import happyBlockImg from '@/assets/project-happy-block.png';
+import gemstoneMlImg from '@/assets/project-gemstone-ml.png';
+import medicoreHmsImg from '@/assets/project-medicore-hms.png';
+import mindfulAiImg from '@/assets/project-mindful-ai.png';
 
 export const ProjectsSection = () => {
   const [selectedProject, setSelectedProject] = useState(null);
@@ -34,30 +37,42 @@ export const ProjectsSection = () => {
     },
     {
       id: 2,
-      title: 'Plant Disease Detection Web App',
-      category: 'Computer Vision',
-      description: 'FastAPI and Streamlit app for plant disease detection using deep learning with user-friendly interface.',
-      longDescription: 'Developed a comprehensive plant disease detection system with both FastAPI backend and Streamlit frontend. The application uses deep learning models to accurately predict plant diseases, providing farmers and gardeners with an easy-to-use tool for early disease detection and treatment recommendations.',
-      technologies: ['FastAPI', 'Streamlit', 'TensorFlow', 'Python', 'Deep Learning'],
-      image: plantDiseaseImg,
-      color: 'from-green-500 to-emerald-500',
-      githubUrl: 'https://github.com/Viraj-005/plant-disease-detection-fastapi',
-      liveUrl: 'https://plant-disease-detection-web-app.streamlit.app'
+      title: 'Gemstone ML Unified API: Identification & Cut Advisor',
+      category: 'AI/ML',
+      description: 'Advanced, high-performance API system providing Visual Gemstone Identification and an Intelligent Precision Cut Advisor.',
+      longDescription: 'An advanced, high-performance API designed for the gemological industry. This unified system provides two core intelligence services: Visual & Physical Identification (combining CNN image features with properties like refractive index and hardness to predict variety, origin, and natural vs. synthetic) and an Intelligent Cut Advisor (hierarchical pipeline advising on optimal cut families, specific cuts, and precise Pavilion/Crown cutting angles).',
+      technologies: ['FastAPI', 'TensorFlow', 'CatBoost', 'XGBoost', 'Python'],
+      image: gemstoneMlImg,
+      color: 'from-blue-500 to-indigo-500',
+      githubUrl: 'https://github.com/Viraj-005/Gemstone-ml-unified-api',
+      liveUrl: null
     },
     {
       id: 3,
-      title: 'Agricultural Crop Recognition',
-      category: 'Computer Vision',
-      description: 'Deep learning model for identifying and classifying different crop types from satellite and drone imagery.',
-      longDescription: 'Developed a convolutional neural network to classify agricultural crops from aerial imagery. The model achieves 94% accuracy in identifying crop types, helping farmers optimize their land use and monitor crop health. Implemented using TensorFlow and deployed with FastAPI.',
-      technologies: ['TensorFlow', 'OpenCV', 'FastAPI', 'Python', 'Docker'],
-      image: cropRecognitionImg,
-      color: 'from-green-500 to-emerald-500',
-      githubUrl: null,
+      title: 'MediCore HMS: AI-Powered Hospital Management System',
+      category: 'Full-Stack Web App',
+      description: 'State-of-the-art Hospital Management System integrating clinical operations with predictive analytics for demand and risk forecasting.',
+      longDescription: 'MediCore HMS is a state-of-the-art, production-grade Hospital Management System designed for modern healthcare facilities. It integrates clinical operations with advanced predictive analytics: featuring four specialized Machine Learning models built with CatBoost and Scikit-Learn to provide proactive insights: Drug Expiry Risk Engine, Inventory Consumption Forecaster, Equipment Demand & Maintenance Predictor, and Patient Load Forecaster. Includes real-time Command Center, clinical logs, and intelligent alerts.',
+      technologies: ['React', 'FastAPI', 'CatBoost', 'PostgreSQL', 'Tailwind CSS'],
+      image: medicoreHmsImg,
+      color: 'from-teal-500 to-cyan-500',
+      githubUrl: 'https://github.com/Viraj-005/MediCore-HMS',
       liveUrl: null
     },
     {
       id: 4,
+      title: 'Mindful-AI: Conversational Stress Detection & Monitoring',
+      category: 'AI/ML',
+      description: 'Conversational mental health companion and analytical dashboard featuring progressive stress detection through text.',
+      longDescription: 'Mindful-AI is a premium, state-of-the-art mental health companion and analytical dashboard. It features an interactive, multi-turn AI chatbot designed for progressive stress detection through conversational text using a state machine and context-aware follow-ups. In the backend, a Dual ML Classifier Engine (PyTorch + HuggingFace + Scikit-Learn) classifies emotions and stress levels, while a highly responsive React frontend visualizes well-being trends over time using interactive Recharts.',
+      technologies: ['React', 'FastAPI', 'PyTorch', 'Scikit-Learn', 'Tailwind CSS'],
+      image: mindfulAiImg,
+      color: 'from-pink-500 to-rose-500',
+      githubUrl: 'https://github.com/Viraj-005/Mindful-AI',
+      liveUrl: null
+    },
+    {
+      id: 5,
       title: 'OmniFile AI',
       category: 'AI Document Assistant',
       description: 'Streamlit app powered by Google Gemini API for multi-format document understanding and smart analysis.',
@@ -69,7 +84,19 @@ export const ProjectsSection = () => {
       liveUrl: 'https://omnifile-ai.streamlit.app/'
     },
     {
-      id: 5,
+      id: 6,
+      title: 'Plant Disease Detection Web App',
+      category: 'Computer Vision',
+      description: 'FastAPI and Streamlit app for plant disease detection using deep learning with user-friendly interface.',
+      longDescription: 'Developed a comprehensive plant disease detection system with both FastAPI backend and Streamlit frontend. The application uses deep learning models to accurately predict plant diseases, providing farmers and gardeners with an easy-to-use tool for early disease detection and treatment recommendations.',
+      technologies: ['FastAPI', 'Streamlit', 'TensorFlow', 'Python', 'Deep Learning'],
+      image: plantDiseaseImg,
+      color: 'from-green-500 to-emerald-500',
+      githubUrl: 'https://github.com/Viraj-005/plant-disease-detection-fastapi',
+      liveUrl: 'https://plant-disease-detection-web-app.streamlit.app'
+    },
+    {
+      id: 7,
       title: 'SmartSkin Scan',
       category: 'Medical AI',
       description: 'Streamlit app achieving 97.5% accuracy for skin cancer detection using EfficientNet-B3 and TensorFlow.',
@@ -81,7 +108,19 @@ export const ProjectsSection = () => {
       liveUrl: 'https://smartskin-scan.streamlit.app'
     },
     {
-      id: 6,
+      id: 8,
+      title: 'Agricultural Crop Recognition',
+      category: 'Computer Vision',
+      description: 'Deep learning model for identifying and classifying different crop types from satellite and drone imagery.',
+      longDescription: 'Developed a convolutional neural network to classify agricultural crops from aerial imagery. The model achieves 94% accuracy in identifying crop types, helping farmers optimize their land use and monitor crop health. Implemented using TensorFlow and deployed with FastAPI.',
+      technologies: ['TensorFlow', 'OpenCV', 'FastAPI', 'Python', 'Docker'],
+      image: cropRecognitionImg,
+      color: 'from-green-500 to-emerald-500',
+      githubUrl: null,
+      liveUrl: null
+    },
+    {
+      id: 9,
       title: 'Skin Cancer Detection API',
       category: 'Medical AI',
       description: 'AI-powered system for early detection of skin cancer from dermatological images using deep learning.',
@@ -90,10 +129,10 @@ export const ProjectsSection = () => {
       image: skinCancerImg,
       color: 'from-red-500 to-pink-500',
       githubUrl: null,
-      liveUrl: 'https://upgectsjud5oy5pyn7ewydmv2q0hslco.lambda-url.us-east-1.on.aws/' // Placeholder for live endpoints
+      liveUrl: 'https://upgectsjud5oy5pyn7ewydmv2q0hslco.lambda-url.us-east-1.on.aws/'
     },
     {
-      id: 7,
+      id: 10,
       title: 'Leukemia Detection API',
       category: 'Medical AI',
       description: 'Machine learning model for detecting leukemia from blood cell microscopy images.',
@@ -102,10 +141,10 @@ export const ProjectsSection = () => {
       image: leukemiaImg,
       color: 'from-purple-500 to-indigo-500',
       githubUrl: null,
-      liveUrl: 'https://acqbhbxsfpxsdzuo245oinxcza0gbnio.lambda-url.us-east-1.on.aws/' // Placeholder for live endpoints
+      liveUrl: 'https://acqbhbxsfpxsdzuo245oinxcza0gbnio.lambda-url.us-east-1.on.aws/'
     },
     {
-      id: 8,
+      id: 11,
       title: 'Lung Cancer Detection API',
       category: 'Medical AI',
       description: 'Deep learning system for detecting lung cancer from CT scan images using advanced neural networks.',
@@ -114,10 +153,10 @@ export const ProjectsSection = () => {
       image: lungCancerImg,
       color: 'from-orange-500 to-red-500',
       githubUrl: null,
-      liveUrl: 'https://kubtah5wxifg5m33jaojdiuipy0omkyo.lambda-url.us-east-1.on.aws/' // Placeholder for live endpoints
+      liveUrl: 'https://kubtah5wxifg5m33jaojdiuipy0omkyo.lambda-url.us-east-1.on.aws/'
     },
     {
-      id: 9,
+      id: 12,
       title: 'Book Recommendation Web App',
       category: 'AI/ML',
       description: 'Django app providing ML-powered personalized book recommendations using 20K+ ratings dataset.',
@@ -129,7 +168,7 @@ export const ProjectsSection = () => {
       liveUrl: null
     },
     {
-      id: 10,
+      id: 13,
       title: 'OpenCV Computer Vision Projects',
       category: 'Computer Vision',
       description: '5 computer vision applications including motion filtering, edge detection, OCR, text enhancement, and color detection.',
@@ -141,7 +180,7 @@ export const ProjectsSection = () => {
       liveUrl: null
     },
     {
-      id: 11,
+      id: 14,
       title: 'Frozen Land - Ice Cream Website',
       category: 'Web Development',
       description: 'A beautifully designed ice cream ordering website built with PHP, CSS, and XAMPP.',
@@ -153,7 +192,7 @@ export const ProjectsSection = () => {
       liveUrl: null
     },
     {
-      id: 12,
+      id: 15,
       title: 'HappyBlock 2D Game',
       category: 'Game Development',
       description: 'A 2D game developed using Unity and C# showcasing game development and programming skills.',

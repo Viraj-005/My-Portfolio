@@ -16,7 +16,6 @@ import cert11 from '@/assets/Coursera - UIUX.jpg'
 import cert12 from '@/assets/UIUX FSD.jpeg'
 import cert13 from '@/assets/Web_Design_for_Beginners_2023.jpg'
 import cert14 from '@/assets/Cloud Computing.jpg'
-import looplabCert from '@/assets/looplab-cert.jpg'
 
 
 export const CertificatesSection = () => {
@@ -139,14 +138,6 @@ export const CertificatesSection = () => {
       issuer: "Great Learning Academy",
       date: "2023",
       description: "Completed the Cloud Computing Foundations course from Great Learning Academy, gaining a solid understanding of core cloud concepts and services."
-    },
-    {
-      id: 15,
-      title: "Certificate of Incorporation - LOOPLAB",
-      image: looplabCert,
-      issuer: "Registrar General of Companies, Sri Lanka",
-      date: "2026",
-      description: "Official registration certificate of LOOPLAB (PRIVATE) LIMITED, incorporated under the Companies Act No. 7 of 2007."
     }
   ];
 

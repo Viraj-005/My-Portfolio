@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Calendar, MapPin, Briefcase, Rocket, FileText } from 'lucide-react';
-import looplabCert from '@/assets/looplab-cert.jpg';
+// looplabCert removed
 
 
 export const AboutSection = () => {
@@ -15,14 +15,7 @@ export const AboutSection = () => {
         'Continuing development of the Sales Incentive Automation System, including Manager Incentive module. Contributed to enterprise-level backend systems integrated with Azure AD authentication and Oracle databases. Modules successfully deployed within SLT intranet Linux server environment.',
       type: 'work'
     },
-    {
-      year: '2026',
-      title: 'Co-Founder',
-      company: 'LOOPLAB (PRIVATE) LIMITED',
-      description:
-        'Co-founded LOOPLAB with two partners and officially registered as a private company. Focused on building innovative AI-powered and full-stack digital solutions.',
-      type: 'startup'
-    },
+
     {
       year: '2025',
       title: 'Intern Software Engineer',
@@ -54,7 +47,7 @@ export const AboutSection = () => {
               About <span className="text-primary">Me</span>
             </h2>
             <p className="text-xl text-foreground/70 max-w-2xl mx-auto animate-fade-in-delay-1 opacity-0">
-              Software Engineer | AI Enthusiast | Startup Co-Founder
+              Software Engineer | AI Enthusiast
             </p>
           </div>
 
@@ -67,7 +60,7 @@ export const AboutSection = () => {
                 <p className="text-lg text-foreground/70 leading-relaxed mb-6">
                   I'm a Software Engineer specializing in backend systems, AI-driven solutions, 
                   and enterprise automation. I currently work with Sri Lanka Telecom while 
-                  also co-founding a technology startup.
+                  also developing innovative software solutions.
                 </p>
                 <p className="text-lg text-foreground/70 leading-relaxed mb-6">
                   My work focuses on automating complex business processes, building scalable 
@@ -92,7 +85,7 @@ export const AboutSection = () => {
               <div className="mt-8">
                 <h4 className="text-lg font-semibold mb-4 text-foreground">Specializations</h4>
                 <div className="flex flex-wrap gap-3">
-                  {['Backend Engineering', 'Enterprise Automation', 'AI/ML Systems', 'Startup Development'].map((skill, index) => (
+                  {['Backend Engineering', 'Enterprise Automation', 'AI/ML Systems', 'Full-Stack Development'].map((skill, index) => (
                     <div
                       key={skill}
                       draggable
@@ -154,17 +147,7 @@ export const AboutSection = () => {
                       <h4 className="text-lg font-semibold mb-1">{item.title}</h4>
                       <p className="text-purple-500 font-medium mb-2">{item.company}</p>
                       <p className="text-foreground/70 text-sm mb-4">{item.description}</p>
-                      {item.type === 'startup' && (
-                        <a 
-                          href={looplabCert} 
-                          target="_blank" 
-                          rel="noopener noreferrer"
-                          className="inline-flex items-center gap-2 text-sm font-medium text-primary hover:text-primary/80 transition-colors"
-                        >
-                          <FileText className="w-4 h-4" />
-                          View Registration Certificate
-                        </a>
-                      )}
+
                     </div>
                   </div>
                 ))}

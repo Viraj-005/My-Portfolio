@@ -111,10 +111,7 @@ export const HeroSection = () => {
           <p className="text-xl md:text-2xl mb-8 max-w-2xl mx-auto animate-fade-in-delay-2 opacity-0">
             Freelance <span className="text-primary font-semibold">Software Engineer</span> at 
             <span className="text-purple-500 font-semibold"> Sri Lanka Telecom</span>
-            <br/> Co-Founder of{" "}
-            <span className="bg-gradient-to-r from-blue-800 to-purple-600 bg-clip-text text-transparent font-semibold">
-              LOOPLAB
-            </span>
+            <br/> building innovative AI-powered and full-stack digital solutions.
           </p>
 
           {/* CTA Buttons */}
