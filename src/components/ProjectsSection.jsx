@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { ArrowRight, ExternalLink, Github, X } from 'lucide-react';
+import { ArrowRight, ExternalLink, Github, X, Lock } from 'lucide-react';
 
 // Import project images
 import cancerDetectiveImg from '@/assets/project-cancer-detective.png';
@@ -45,6 +45,7 @@ export const ProjectsSection = () => {
       image: gemstoneMlImg,
       color: 'from-blue-500 to-indigo-500',
       githubUrl: 'https://github.com/Viraj-005/Gemstone-ml-unified-api',
+      isPrivate: true,
       liveUrl: null
     },
     {
@@ -57,6 +58,7 @@ export const ProjectsSection = () => {
       image: medicoreHmsImg,
       color: 'from-teal-500 to-cyan-500',
       githubUrl: 'https://github.com/Viraj-005/MediCore-HMS',
+      isPrivate: true,
       liveUrl: null
     },
     {
@@ -69,6 +71,7 @@ export const ProjectsSection = () => {
       image: mindfulAiImg,
       color: 'from-pink-500 to-rose-500',
       githubUrl: 'https://github.com/Viraj-005/Mindful-AI',
+      isPrivate: true,
       liveUrl: null
     },
     {
@@ -382,7 +385,15 @@ export const ProjectsSection = () => {
 
               {/* Action Buttons */}
               <div className="flex flex-col sm:flex-row gap-4 pt-4">
-                {selectedProjectData.githubUrl && (
+                {selectedProjectData.isPrivate ? (
+                  <div 
+                    className="flex-1 px-6 py-2 rounded-full border border-primary/30 text-primary/70 bg-primary/5 font-medium flex items-center justify-center cursor-not-allowed"
+                    title="This repository is private"
+                  >
+                    <Lock className="mr-2 w-4 h-4" />
+                    Private Repository
+                  </div>
+                ) : selectedProjectData.githubUrl && (
                   <a 
                     href={selectedProjectData.githubUrl}
                     target="_blank"
