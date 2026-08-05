@@ -4,7 +4,44 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/VRJ.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Viraj Induruwa Portfolio</title>
+    <meta
+      name="description"
+      content="Viraj Induruwa. Software Engineer building AI-powered and full-stack systems. Backend engineering, enterprise automation, and applied machine learning."
+    />
+    <meta name="theme-color" content="#0a090f" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#fafafc" media="(prefers-color-scheme: light)" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <title>Viraj Induruwa | Software Engineer</title>
+
+    <!--
+      Runs before first paint so the theme never flashes, and so the scroll-reveal
+      hidden state is only ever applied when we know we can undo it.
+    -->
+    <script>
+      (function () {
+        try {
+          var stored = localStorage.getItem('theme');
+          var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          if (stored === 'dark' || (!stored && prefersDark)) {
+            document.documentElement.classList.add('dark');
+          }
+        } catch (e) {
+          /* private mode or storage disabled, fall through to light */
+        }
+
+        try {
+          var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+          if ('IntersectionObserver' in window && !reduced) {
+            document.documentElement.classList.add('js-motion');
+          }
+        } catch (e) {
+          /* leave content visible */
+        }
+      })();
+    </script>
   </head>
   <body>
     <div id="root"></div>

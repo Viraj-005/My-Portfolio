@@ -1,52 +1,23 @@
-import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
-import { useState, useEffect } from "react";
-import { Home } from "./pages/Home";
-import { NotFound } from "./pages/NotFound";
-import { Toaster } from "@/components/ui/toaster";
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { Home } from './pages/Home';
+import { NotFound } from './pages/NotFound';
+import { Toaster } from '@/components/ui/toaster';
 
-// ✅ Loading component with video
-function Loading() {
-  return (
-    <div className="flex justify-center items-center h-screen bg-white">
-      <video
-        src="/loading-animation.mp4"
-        autoPlay
-        loop
-        muted
-        playsInline
-        className="w-40 h-40"
-      />
-    </div>
-  );
-}
-
-// ✅ Separate content wrapper so loader works with location changes
-function AppContent() {
-  const location = useLocation();
-  const [loading, setLoading] = useState(false);
-
-  useEffect(() => {
-    setLoading(true);
-    const timer = setTimeout(() => setLoading(false), 1000); // adjust delay as needed
-    return () => clearTimeout(timer);
-  }, [location.pathname]);
-
-  return loading ? (
-    <Loading />
-  ) : (
-    <Routes>
-      <Route index element={<Home />} />
-      <Route path="*" element={<NotFound />} />
-    </Routes>
-  );
-}
-
+/**
+ * The previous version gated every route behind a hard-coded 1000ms timer and a
+ * `bg-white` splash: a full second of artificial delay before any content, plus
+ * a white flash for anyone on the dark theme. Both are gone; the app is static
+ * and has nothing to wait for.
+ */
 function App() {
   return (
     <>
       <Toaster />
       <BrowserRouter>
-        <AppContent />
+        <Routes>
+          <Route index element={<Home />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
       </BrowserRouter>
     </>
   );

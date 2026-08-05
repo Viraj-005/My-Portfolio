@@ -1,159 +1,185 @@
-import { useState, useEffect } from 'react';
-import { ChevronDown, Download, Eye, Check } from 'lucide-react';
-import profileImage from '@/assets/viraj-profile2.png';
+import { useState } from 'react';
+import { ArrowDown, Download, Check, Github, Linkedin } from 'lucide-react';
+import profileImage from '@/assets/viraj-profile2.webp';
 import resumePDF from '@/assets/Viraj_Induruwa.pdf';
+import { useReveal, stagger } from '@/hooks/use-reveal';
 
-const texts = [
-  "Hi, I'm Viraj 👋",
-  "Software Engineer",
-  "AI/ML Enthusiast"
+/**
+ * A monospace readout instead of the usual three-big-numbers hero strip.
+ * Same proof, but it reads as a system status line rather than a SaaS metric row.
+ */
+const readout = [
+  { key: 'now', value: 'Freelance Software Engineer · Sri Lanka Telecom' },
+  { key: 'focus', value: 'Backend systems, enterprise automation, applied ML' },
+  { key: 'models', value: '98% lung · 93% skin · 88% leukemia detection' },
 ];
 
 export const HeroSection = () => {
-  const [currentText, setCurrentText] = useState('');
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [isDeleting, setIsDeleting] = useState(false);
-  const [isDownloading, setIsDownloading] = useState(false);
-
-  useEffect(() => {
-    const type = () => {
-      const fullText = texts[currentIndex];
-      
-      if (!isDeleting) {
-        setCurrentText(fullText.substring(0, currentText.length + 1));
-        
-        if (currentText === fullText) {
-          setTimeout(() => setIsDeleting(true), 2000);
-        }
-      } else {
-        setCurrentText(fullText.substring(0, currentText.length - 1));
-        
-        if (currentText === '') {
-          setIsDeleting(false);
-          setCurrentIndex((prevIndex) => (prevIndex + 1) % texts.length);
-        }
-      }
-    };
-
-    const timer = setTimeout(type, isDeleting ? 50 : 100);
-    return () => clearTimeout(timer);
-  }, [currentText, currentIndex, isDeleting]);
-
-  const scrollToAbout = () => {
-    document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' });
-  };
+  const [isDownloaded, setIsDownloaded] = useState(false);
+  const revealRef = useReveal();
 
   const handleDownloadCV = () => {
-    setIsDownloading(true);
-    
-    // Create a link element and trigger download
     const link = document.createElement('a');
     link.href = resumePDF;
     link.download = 'Viraj_Induruwa_Resume.pdf';
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
-    
-    // Reset download state after animation
-    setTimeout(() => {
-      setIsDownloading(false);
-    }, 2000);
+
+    setIsDownloaded(true);
+    setTimeout(() => setIsDownloaded(false), 2400);
   };
 
   return (
-    <div id="hero" className="min-h-screen flex items-center justify-center relative overflow-hidden pt-20 text-center">
-      {/* Animated Background Blobs */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-20 left-10 w-72 h-72 bg-gradient-to-r from-primary/20 to-purple-500/20 rounded-full blur-3xl animate-float"></div>
-        <div className="absolute bottom-32 right-16 w-96 h-96 bg-gradient-to-r from-blue-500/20 to-primary/20 rounded-full blur-3xl animate-float" style={{ animationDelay: '2s' }}></div>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-gradient-to-r from-purple-500/20 to-blue-500/20 rounded-full blur-3xl animate-float" style={{ animationDelay: '4s' }}></div>
-        
-        {/* Stars */}
-        <div className="star w-2 h-2 top-20 right-20 animate-pulse-subtle" />
-        <div className="star w-1 h-1 top-40 left-32 animate-pulse-subtle" style={{ animationDelay: '1s' }} />
-        <div className="star w-3 h-3 bottom-40 right-32 animate-pulse-subtle" style={{ animationDelay: '2s' }} />
-      </div>
+    <section
+      id="hero"
+      ref={revealRef}
+      className="relative flex min-h-[100svh] items-center pt-28 pb-20"
+    >
+      <div className="container">
+        <div className="grid items-center gap-12 lg:grid-cols-[1.25fr_1fr] lg:gap-16">
+          {/* ── Content ─────────────────────────────────────────── */}
+          <div>
+            <p
+              data-reveal="fade"
+              className="mb-6 inline-flex items-center gap-2.5 rounded-full border border-border bg-surface/70 py-1.5 pl-2.5 pr-3.5 font-mono text-xs text-muted backdrop-blur-sm"
+            >
+              <span className="relative flex h-2 w-2" aria-hidden="true">
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-70" />
+                <span className="relative inline-flex h-2 w-2 rounded-full bg-accent" />
+              </span>
+              Available for freelance work
+            </p>
 
-      <div className="container relative z-10">
-        <div className="max-w-4xl mx-auto">
-          {/* Profile Image */}
-          <div className="mb-8 relative inline-block animate-fade-in">
-            <div className="relative">
-              <div className="w-48 h-48 mx-auto rounded-full card-hover overflow-hidden bg-gradient-to-r from-primary/10 to-purple-500/10 p-1">
-                <img 
-                  src={profileImage} 
-                  alt="Viraj Induruwa" 
-                  className="w-full h-full object-cover rounded-full"
-                />
-              </div>
-              <div className="absolute inset-0 w-48 h-48 mx-auto rounded-full border-2 border-primary/30 animate-pulse-subtle"></div>
+            <h1 data-reveal style={stagger(1)} className="display mb-6">
+              Viraj Induruwa
+            </h1>
+
+            <p
+              data-reveal
+              style={stagger(2)}
+              className="prose-body mb-10 text-lg md:text-xl"
+            >
+              I build backend systems and AI-powered applications, turning manual
+              enterprise workflows into automated ones and medical imaging into
+              diagnostic tools.
+            </p>
+
+            {/* System readout */}
+            <dl
+              data-reveal
+              style={stagger(3)}
+              className="mb-10 space-y-2.5 border-l border-border pl-5"
+            >
+              {readout.map((row) => (
+                <div key={row.key} className="flex flex-col gap-x-4 sm:flex-row">
+                  <dt className="label-mono w-20 shrink-0 pt-px">{row.key}</dt>
+                  <dd className="text-sm text-muted tabular">{row.value}</dd>
+                </div>
+              ))}
+            </dl>
+
+            {/* ── Actions ─────────────────────────────────────── */}
+            <div
+              data-reveal
+              style={stagger(4)}
+              className="flex flex-wrap items-center gap-3"
+            >
+              <button
+                type="button"
+                className="btn btn-primary"
+                onClick={() =>
+                  document
+                    .getElementById('projects')
+                    ?.scrollIntoView({ behavior: 'smooth' })
+                }
+              >
+                View my work
+              </button>
+
+              <button
+                type="button"
+                className="btn btn-secondary"
+                onClick={handleDownloadCV}
+              >
+                {isDownloaded ? (
+                  <>
+                    <Check className="h-4 w-4 text-accent" aria-hidden="true" />
+                    Downloaded
+                  </>
+                ) : (
+                  <>
+                    <Download className="h-4 w-4" aria-hidden="true" />
+                    Download CV
+                  </>
+                )}
+              </button>
+
+              <span className="mx-1 hidden h-6 w-px bg-border sm:block" aria-hidden="true" />
+
+              <a
+                href="https://github.com/Viraj-005"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="GitHub profile"
+                className="btn btn-ghost !px-3"
+              >
+                <Github className="h-[18px] w-[18px]" aria-hidden="true" />
+              </a>
+              <a
+                href="https://linkedin.com/in/viraj-induruwa"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="LinkedIn profile"
+                className="btn btn-ghost !px-3"
+              >
+                <Linkedin className="h-[18px] w-[18px]" aria-hidden="true" />
+              </a>
             </div>
           </div>
 
-          {/* Typing Animation */}
-          <div className="mb-6 animate-fade-in-delay-1 opacity-0">
-            <h1 className="text-4xl md:text-6xl font-black mb-4 min-h-[80px] md:min-h-[120px]">
-              <span className="text-glow bg-gradient-to-r from-primary via-purple-500 to-blue-500 bg-clip-text text-transparent">
-                {currentText.includes('👋') ? (
-                  <>
-                    {currentText.substring(0, currentText.indexOf('👋'))}
-                    <span style={{ color: '#FFAB40' }}>👋</span>
-                    {currentText.substring(currentText.indexOf('👋') + 2)}
-                  </>
-                ) : (
-                  currentText
-                )}
-              </span>
-            </h1>
+          {/* ── Portrait ────────────────────────────────────────── */}
+          <div data-reveal style={stagger(2)} className="order-first lg:order-last">
+            {/* Capped at every breakpoint: unbounded, the 5:6 portrait grows
+                tall enough on desktop to push the CTAs off the first screen. */}
+            <div className="relative mx-auto w-full max-w-[200px] sm:max-w-[240px] lg:mx-0 lg:ml-auto lg:max-w-[400px]">
+              <div className="panel overflow-hidden">
+                <img
+                  src={profileImage}
+                  alt="Viraj Induruwa"
+                  width={520}
+                  height={620}
+                  fetchPriority="high"
+                  className="aspect-[5/6] w-full object-cover"
+                />
+              </div>
+              {/* Corner ticks: a quiet nod to the grid behind everything */}
+              <span
+                className="absolute -left-px -top-px h-4 w-4 border-l-2 border-t-2 border-primary"
+                aria-hidden="true"
+              />
+              <span
+                className="absolute -bottom-px -right-px h-4 w-4 border-b-2 border-r-2 border-primary"
+                aria-hidden="true"
+              />
+            </div>
           </div>
+        </div>
 
-          {/* Subtitle */}
-          <p className="text-xl md:text-2xl mb-8 max-w-2xl mx-auto animate-fade-in-delay-2 opacity-0">
-            Freelance <span className="text-primary font-semibold">Software Engineer</span> at 
-            <span className="text-purple-500 font-semibold"> Sri Lanka Telecom</span>
-            <br/> building innovative AI-powered and full-stack digital solutions.
-          </p>
-
-          {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16 animate-fade-in-delay-3 opacity-0">
-            <button 
-              className="cosmic-button px-8 py-4 text-lg flex items-center justify-center cursor-pointer"
-              onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}
-            >
-              <Eye className="mr-2 w-5 h-5" />
-              View My Work
-            </button>
-            <button 
-              className={`px-8 py-4 text-lg rounded-full border border-primary/30 hover:border-primary text-primary hover:bg-primary/10 font-semibold transition-all duration-300 hover:scale-105 active:scale-95 flex items-center justify-center card-hover cursor-pointer ${
-                isDownloading ? 'bg-primary/20 border-primary' : ''
-              }`}
-              onClick={handleDownloadCV}
-              disabled={isDownloading}
-            >
-              {isDownloading ? (
-                <>
-                  <Check className="mr-2 w-5 h-5 animate-pulse" />
-                  Downloaded!
-                </>
-              ) : (
-                <>
-                  <Download className="mr-2 w-5 h-5" />
-                  Download CV
-                </>
-              )}
-            </button>
-          </div>
-
-          {/* Scroll Indicator */}
-          <button 
-            onClick={scrollToAbout}
-            className="animate-bounce hover:scale-110 transition-transform duration-300 animate-fade-in-delay-4 opacity-0 cursor-pointer"
-            aria-label="Scroll to about section"
+        {/* ── Scroll cue ────────────────────────────────────────── */}
+        <div className="mt-16 hidden lg:block">
+          <a
+            href="#about"
+            className="group inline-flex items-center gap-2 font-mono text-xs text-subtle transition-colors duration-[--duration-fast] hover:text-foreground"
           >
-            <ChevronDown className="w-8 h-8 text-primary" />
-          </button>
+            <ArrowDown
+              className="h-3.5 w-3.5 transition-transform duration-[--duration-base] ease-[--ease-out-expo] group-hover:translate-y-0.5"
+              aria-hidden="true"
+            />
+            Scroll
+          </a>
         </div>
       </div>
-    </div>
+    </section>
   );
 };

@@ -1,136 +1,102 @@
-import { Github, Linkedin, BookOpen, Heart } from 'lucide-react';
+import { Github, Linkedin, BookOpen, ArrowUp } from 'lucide-react';
+
+const socialLinks = [
+  { name: 'GitHub', icon: Github, href: 'https://github.com/Viraj-005' },
+  { name: 'LinkedIn', icon: Linkedin, href: 'https://linkedin.com/in/viraj-induruwa' },
+  { name: 'Medium', icon: BookOpen, href: 'https://medium.com/@virajinduruwa2' },
+];
+
+const navigationLinks = [
+  { name: 'About', href: '#about' },
+  { name: 'Stack', href: '#skills' },
+  { name: 'Work', href: '#projects' },
+  { name: 'Certifications', href: '#certificates' },
+  { name: 'Contact', href: '#contact' },
+];
 
 export const Footer = () => {
   const currentYear = new Date().getFullYear();
 
-  const socialLinks = [
-    {
-      name: 'LinkedIn',
-      icon: Linkedin,
-      href: 'https://linkedin.com/in/viraj-induruwa',
-      color: 'hover:text-blue-400'
-    },
-    {
-      name: 'GitHub',
-      icon: Github,
-      href: 'https://github.com/Viraj-005',
-      color: 'hover:text-purple-400'
-    },
-    {
-      name: 'Medium',
-      icon: BookOpen,
-      href: 'https://medium.com/@virajinduruwa2',
-      color: 'hover:text-green-400'
-    }
-  ];
-
-  const navigationLinks = [
-    { name: 'Home', href: '#hero' },
-    { name: 'About', href: '#about' },
-    { name: 'Skills', href: '#skills' },
-    { name: 'Projects', href: '#projects' },
-    { name: 'Contact', href: '#contact' }
-  ];
-
-  const scrollToSection = (href) => {
-    const element = document.querySelector(href);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
   return (
-    <div className="relative overflow-hidden">
-      {/* Background Elements */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="star w-2 h-2 top-20 left-20 animate-pulse-subtle" />
-        <div className="star w-1 h-1 top-40 right-32 animate-pulse-subtle" style={{ animationDelay: '1s' }} />
-        <div className="star w-3 h-3 bottom-40 right-20 animate-pulse-subtle" style={{ animationDelay: '2s' }} />
-      </div>
+    <footer className="relative mt-8 border-t border-border bg-surface/40" style={{ zIndex: 'var(--z-raised)' }}>
+      <div className="container py-14">
+        <div className="grid gap-10 md:grid-cols-[1.5fr_1fr_1fr]">
+          <div>
+            <p className="font-mono text-sm font-semibold">
+              VRJ<span className="text-primary">.</span>
+            </p>
+            <p className="prose-body mt-3 max-w-xs text-sm">
+              Software engineer building backend systems, enterprise automation,
+              and AI-powered applications.
+            </p>
 
-      <div className="bg-card border-t border-border mt-24 relative z-10">
-        <div className="container py-12">
-          <div className="max-w-6xl mx-auto grid md:grid-cols-3 gap-8">
-            {/* Brand Section */}
-            <div className="md:col-span-1">
-              <div className="text-glow text-4xl font-black tracking-wider mb-4 text-primary">
-                <span className="relative z-10">
-                    <span className="text-glow text-foreground">V</span>RJ
-                </span>
-              </div>
-              <p className="text-foreground/70 mb-6 leading-relaxed">
-                Software Engineer passionate about creating innovative solutions 
-                through AI, machine learning, and modern web technologies.
-              </p>
-              
-              {/* Social Links */}
-              <div className="flex space-x-4">
-                {socialLinks.map((social) => {
-                  const Icon = social.icon;
-                  return (
+            <ul className="mt-6 flex gap-1">
+              {socialLinks.map((social) => {
+                const Icon = social.icon;
+                return (
+                  <li key={social.name}>
                     <a
-                      key={social.name}
                       href={social.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className={`p-3 card-hover rounded-full bg-primary/10 border border-primary/20 transition-all duration-300 ${social.color}`}
                       aria-label={social.name}
+                      className="inline-flex h-10 w-10 items-center justify-center rounded-lg text-muted transition-colors duration-[--duration-fast] hover:bg-surface-2 hover:text-foreground"
                     >
-                      <Icon className="w-5 h-5" />
+                      <Icon className="h-[18px] w-[18px]" aria-hidden="true" />
                     </a>
-                  );
-                })}
-              </div>
-            </div>
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
 
-            {/* Navigation Links */}
-            <div className="md:col-span-1">
-              <h3 className="text-lg font-semibold mb-4 text-primary">Navigation</h3>
-              <nav className="space-y-3">
-                {navigationLinks.map((link) => (
-                  <button
-                    key={link.name}
-                    onClick={() => scrollToSection(link.href)}
-                    className="block text-foreground/70 hover:text-primary transition-colors duration-300 text-left card-hover cursor-pointer"
+          <nav aria-label="Footer">
+            <h2 className="label-mono">navigate</h2>
+            <ul className="mt-4 space-y-2.5">
+              {navigationLinks.map((link) => (
+                <li key={link.name}>
+                  <a
+                    href={link.href}
+                    className="text-sm text-muted transition-colors duration-[--duration-fast] hover:text-foreground"
                   >
                     {link.name}
-                  </button>
-                ))}
-              </nav>
-            </div>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </nav>
 
-            {/* Contact Info */}
-            <div className="md:col-span-1">
-              <h3 className="text-lg font-semibold mb-4 text-primary">Get In Touch</h3>
-              <div className="space-y-3">
-                <a 
+          <div>
+            <h2 className="label-mono">contact</h2>
+            <ul className="mt-4 space-y-2.5 text-sm">
+              <li>
+                <a
                   href="mailto:virajinduruwa123@gmail.com"
-                  className="block text-foreground/70 hover:text-primary transition-colors duration-300 card-hover"
+                  className="text-muted transition-colors duration-[--duration-fast] hover:text-foreground"
                 >
                   virajinduruwa123@gmail.com
                 </a>
-                <p className="text-foreground/70">Sri Lanka</p>
-                <p className="text-foreground/60 text-sm leading-relaxed">
-                  Available for freelance opportunities and exciting projects.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          {/* Divider */}
-          <div className="border-t border-border my-8"></div>
-
-          {/* Copyright */}
-          <div className="flex flex-col md:flex-row justify-between items-center text-center md:text-left">
-            <p className="text-foreground/60 text-sm">
-              © {currentYear} Viraj Induruwa. All rights reserved.
-            </p>
+              </li>
+              <li className="text-muted">Sri Lanka</li>
+              <li className="text-subtle">Available for freelance work</li>
+            </ul>
           </div>
         </div>
-      </div>
 
-      {/* Bottom padding for mobile navigation */}
-      <div className="md:hidden h-20"></div>
-    </div>
+        <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-border pt-6 sm:flex-row">
+          <p className="label-mono">
+            © {currentYear} Viraj Induruwa
+          </p>
+
+          <a
+            href="#hero"
+            className="inline-flex items-center gap-1.5 font-mono text-xs text-subtle transition-colors duration-[--duration-fast] hover:text-foreground"
+          >
+            Back to top
+            <ArrowUp className="h-3.5 w-3.5" aria-hidden="true" />
+          </a>
+        </div>
+      </div>
+    </footer>
   );
 };

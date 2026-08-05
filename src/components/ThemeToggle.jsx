@@ -1,46 +1,69 @@
-import { useEffect, useState } from "react"
-import { Sun, Moon } from "lucide-react"
-import { cn } from "@/lib/utils"
+import { useCallback, useEffect, useState } from 'react';
+import { Sun, Moon } from 'lucide-react';
+import { cn } from '@/lib/utils';
 
-export const ThemeToggle = () => {
-    const [isDarkMode, setIsDarkMode] = useState(false);
+/**
+ * Initial state is read from the class the boot script already applied, so this
+ * never fights it and never causes a flash. It also no longer forces "light" on
+ * first visit. An unset preference follows the OS.
+ */
+export const ThemeToggle = ({ className }) => {
+  const [isDark, setIsDark] = useState(() =>
+    typeof document !== 'undefined'
+      ? document.documentElement.classList.contains('dark')
+      : false
+  );
 
-    useEffect(() => {
-        const storedTheme = localStorage.getItem("theme");
-        if (storedTheme === "dark") {
-            setIsDarkMode(true);
-            document.documentElement.classList.add("dark");
-        } else {
-            localStorage.setItem("theme", "light");
-            setIsDarkMode(false);
-        }
-    }, [])
+  const toggleTheme = useCallback(() => {
+    setIsDark((prev) => {
+      const next = !prev;
+      document.documentElement.classList.toggle('dark', next);
+      try {
+        localStorage.setItem('theme', next ? 'dark' : 'light');
+      } catch {
+        /* storage unavailable, the class still applies for this session */
+      }
+      return next;
+    });
+  }, []);
 
-    const toggleTheme = () => {
-        if (isDarkMode) {
-            document.documentElement.classList.remove("dark");
-            localStorage.setItem("theme", "light");
-            setIsDarkMode(false);
-        } else {
-            document.documentElement.classList.add("dark");
-            localStorage.setItem("theme", "dark");
-            setIsDarkMode(true);
-        }
-    }
+  // Follow the OS while the user has never made an explicit choice.
+  useEffect(() => {
+    const media = window.matchMedia('(prefers-color-scheme: dark)');
+    const onChange = (event) => {
+      let stored = null;
+      try {
+        stored = localStorage.getItem('theme');
+      } catch {
+        /* ignore */
+      }
+      if (stored) return;
+      document.documentElement.classList.toggle('dark', event.matches);
+      setIsDark(event.matches);
+    };
 
-    return (
-        <button onClick={toggleTheme} className={cn("fixed max-sm:hidden top-7 right-5 sm:top-7 sm:right-6 z-50 p-2 rounded-full",
-        "bg-foreground/10 dark:bg-background/20",
-        "border border-primary/20 shadow-md",
-        "transition-all duration-300 hover:scale-105 hover:shadow-lg",
-        "cursor-pointer focus:outline-none"
-        )}>
-            {" "}
-            {isDarkMode ?  (
-                <Sun className="h-6 w-6 text-yellow-300"/> 
-            ): (
-            <Moon className="h-6 w-6 text-blue-900" />
-            )}
-        </button>
-    )
-}
+    media.addEventListener('change', onChange);
+    return () => media.removeEventListener('change', onChange);
+  }, []);
+
+  return (
+    <button
+      type="button"
+      onClick={toggleTheme}
+      aria-label={isDark ? 'Switch to light theme' : 'Switch to dark theme'}
+      aria-pressed={isDark}
+      className={cn(
+        'inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-lg',
+        'cursor-pointer text-muted transition-colors duration-[--duration-fast]',
+        'hover:bg-surface-2 hover:text-foreground',
+        className
+      )}
+    >
+      {isDark ? (
+        <Sun className="h-[18px] w-[18px]" aria-hidden="true" />
+      ) : (
+        <Moon className="h-[18px] w-[18px]" aria-hidden="true" />
+      )}
+    </button>
+  );
+};
