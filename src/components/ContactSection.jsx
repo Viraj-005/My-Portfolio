@@ -4,6 +4,20 @@ import emailjs from '@emailjs/browser';
 import { useToast } from '@/hooks/use-toast';
 import { useReveal, stagger } from '@/hooks/use-reveal';
 import { SectionHeading } from '@/components/SectionHeading';
+import { WHATSAPP_ICON, WHATSAPP_URL } from '@/lib/brand-icons';
+
+const WhatsAppGlyph = ({ className }) => (
+  <svg
+    viewBox="0 0 24 24"
+    role="img"
+    aria-hidden="true"
+    focusable="false"
+    fill={WHATSAPP_ICON.color}
+    className={className}
+  >
+    <path d={WHATSAPP_ICON.path} />
+  </svg>
+);
 
 const contactInfo = [
   {
@@ -11,6 +25,16 @@ const contactInfo = [
     label: 'email',
     value: 'virajinduruwa123@gmail.com',
     href: 'mailto:virajinduruwa123@gmail.com',
+  },
+  {
+    // Same number as the phone line, but a different intent: message rather
+    // than call. Worth its own row so nobody has to guess whether it is on
+    // WhatsApp.
+    icon: WhatsAppGlyph,
+    label: 'whatsapp',
+    value: '+94 75 541 5575',
+    href: WHATSAPP_URL,
+    brandIcon: true,
   },
   {
     icon: Phone,
@@ -275,7 +299,9 @@ export const ContactSection = () => {
                       className="panel-interactive group flex items-center gap-4 px-4 py-3.5"
                     >
                       <Icon
-                        className="h-4 w-4 shrink-0 text-primary"
+                        className={`h-4 w-4 shrink-0 ${
+                          info.brandIcon ? '' : 'text-primary'
+                        }`}
                         aria-hidden="true"
                       />
                       <span className="min-w-0 flex-1">

@@ -1,4 +1,11 @@
 import { Github, Linkedin, BookOpen, ArrowUp } from 'lucide-react';
+import { WHATSAPP_ICON, WHATSAPP_URL } from '@/lib/brand-icons';
+
+const WhatsAppGlyph = (props) => (
+  <svg viewBox="0 0 24 24" role="img" aria-hidden="true" focusable="false" {...props}>
+    <path d={WHATSAPP_ICON.path} fill="currentColor" />
+  </svg>
+);
 
 const socialLinks = [
   { name: 'GitHub', icon: Github, href: 'https://github.com/Viraj-005' },
@@ -75,6 +82,17 @@ export const Footer = () => {
                   className="text-muted transition-colors duration-[--duration-fast] hover:text-foreground"
                 >
                   virajinduruwa123@gmail.com
+                </a>
+              </li>
+              <li>
+                <a
+                  href={WHATSAPP_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 text-muted transition-colors duration-[--duration-fast] hover:text-foreground"
+                >
+                  <WhatsAppGlyph className="h-3.5 w-3.5 shrink-0" />
+                  WhatsApp
                 </a>
               </li>
               <li className="text-muted">Sri Lanka</li>

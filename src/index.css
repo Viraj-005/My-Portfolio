@@ -198,6 +198,44 @@
     transform: none;
   }
 
+  /* ── Disclosure ────────────────────────────────────────────
+     Animating grid-template-rows from 0fr to 1fr expands to the content's
+     real height without hard-coding one, and without animating height itself.
+     ──────────────────────────────────────────────────────── */
+  .disclosure-panel {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows var(--duration-base) var(--ease-out-expo);
+  }
+
+  .disclosure-panel > * {
+    overflow: hidden;
+  }
+
+  .disclosure[data-open='true'] .disclosure-panel {
+    grid-template-rows: 1fr;
+  }
+
+  .disclosure-chevron {
+    transition: transform var(--duration-base) var(--ease-out-expo);
+  }
+
+  .disclosure[data-open='true'] .disclosure-chevron {
+    transform: rotate(180deg);
+  }
+
+  /* Hover only where hovering is real. On touch, :hover sticks after a tap and
+     would fight the click state, leaving the row jammed open. */
+  @media (hover: hover) and (pointer: fine) {
+    .disclosure:hover .disclosure-panel {
+      grid-template-rows: 1fr;
+    }
+
+    .disclosure:hover .disclosure-chevron {
+      transform: rotate(180deg);
+    }
+  }
+
   /* For rules and connectors that should draw themselves in. */
   .js-motion [data-reveal="draw"] {
     opacity: 1;
