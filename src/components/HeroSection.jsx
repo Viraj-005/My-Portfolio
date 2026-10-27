@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { ArrowDown, Download, Check, Github, Linkedin } from 'lucide-react';
 import profileImage from '@/assets/viraj-profile2.webp';
-import resumePDF from '@/assets/Viraj_Induruwa.pdf';
+import resumePDF from '@/assets/Viraj_Induruwa_Resume.pdf';
 import { useReveal, stagger } from '@/hooks/use-reveal';
 
 /**
