@@ -18,31 +18,8 @@
 
     <title>Viraj Induruwa | Software Engineer</title>
 
-    <!--
-      Runs before first paint so the theme never flashes, and so the scroll-reveal
-      hidden state is only ever applied when we know we can undo it.
-    -->
-    <script>
-      (function () {
-        try {
-          var stored = localStorage.getItem('portfolio-theme-v2');
-          if (stored === 'dark') {
-            document.documentElement.classList.add('dark');
-          }
-        } catch (e) {
-          /* private mode or storage disabled, fall through to light */
-        }
-
-        try {
-          var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-          if ('IntersectionObserver' in window && !reduced) {
-            document.documentElement.classList.add('js-motion');
-          }
-        } catch (e) {
-          /* leave content visible */
-        }
-      })();
-    </script>
+    <!-- Runs before first paint to initialize theme and scroll reveals. -->
+    <script src="/boot.js"></script>
   </head>
   <body>
     <div id="boot-loader" role="status" aria-label="Loading portfolio">
