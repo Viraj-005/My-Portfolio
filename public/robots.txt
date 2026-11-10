@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://virajinduruwa.com/sitemap.xml
+Sitemap: https://www.virajinduruwa.com/sitemap.xml
