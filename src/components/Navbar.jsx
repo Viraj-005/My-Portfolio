@@ -4,9 +4,10 @@ import { cn } from '@/lib/utils';
 import { ThemeToggle } from '@/components/ThemeToggle';
 
 const navItems = [
+  { name: 'Work', href: '#projects', id: 'projects' },
   { name: 'About', href: '#about', id: 'about' },
   { name: 'Skills', href: '#skills', id: 'skills' },
-  { name: 'Projects', href: '#projects', id: 'projects' },
+
   { name: 'Certifications', href: '#certificates', id: 'certificates' },
   { name: 'Contact', href: '#contact', id: 'contact' },
 ];
@@ -75,7 +76,7 @@ export const Navbar = () => {
   return (
     <header
       className={cn(
-        'fixed inset-x-0 top-0 transition-colors duration-[--duration-base]',
+        'site-header fixed inset-x-0 top-0 transition-colors duration-[--duration-base]' + (isScrolled ? ' is-scrolled' : ' at-top'),
         isScrolled
           ? 'border-b border-border bg-background/80 backdrop-blur-xl'
           : 'border-b border-transparent'
@@ -85,9 +86,9 @@ export const Navbar = () => {
       <div className="container flex h-16 items-center justify-between gap-4">
         <a
           href="#hero"
-          className="font-mono text-sm font-semibold tracking-tight text-foreground"
+          className="brand-wordmark text-foreground"
         >
-          VRJ<span className="text-primary">.</span>
+          viraj<span className="text-primary">.</span>
         </a>
 
         {/* Desktop navigation */}
@@ -174,3 +175,5 @@ export const Navbar = () => {
     </header>
   );
 };
+
+

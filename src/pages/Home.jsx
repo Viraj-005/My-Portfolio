@@ -1,4 +1,5 @@
-import { AmbientBackground } from '@/components/AmbientBackground';
+import { Manifesto } from '@/components/Manifesto';
+
 import { Navbar } from '@/components/Navbar';
 import { HeroSection } from '@/components/HeroSection';
 import { AboutSection } from '@/components/AboutSection';
@@ -18,15 +19,16 @@ export const Home = () => {
         Skip to content
       </a>
 
-      <AmbientBackground />
+      
 
       <Navbar />
 
       <main id="main" className="relative" style={{ zIndex: 'var(--z-raised)' }}>
-        <HeroSection />
-        <AboutSection />
-        <SkillsSection />
+        <HeroSection /><Manifesto />
+        
         <ProjectsSection />
+        <SkillsSection />
+        <AboutSection />
         <CertificatesSection />
         <ContactSection />
       </main>
@@ -35,3 +37,7 @@ export const Home = () => {
     </div>
   );
 };
+
+
+
+

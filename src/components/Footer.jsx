@@ -26,12 +26,12 @@ export const Footer = () => {
 
   return (
     <footer className="relative mt-8 border-t border-border bg-surface/40" style={{ zIndex: 'var(--z-raised)' }}>
-      <div className="container py-14">
+      <div className="container py-14"><a href="#hero" className="footer-signature">Viraj Induruwa<span>.</span></a>
         <div className="grid gap-10 md:grid-cols-[1.5fr_1fr_1fr]">
           <div>
-            <p className="font-mono text-sm font-semibold">
-              VRJ<span className="text-primary">.</span>
-            </p>
+            <a href="#hero" className="brand-wordmark inline-block text-foreground" aria-label="Viraj, back to top">
+              viraj<span className="text-primary">.</span>
+            </a>
             <p className="prose-body mt-3 max-w-xs text-sm">
               Software engineer building backend systems, enterprise automation,
               and AI-powered applications.
@@ -118,3 +118,4 @@ export const Footer = () => {
     </footer>
   );
 };
+

@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 150" fill="none">
+  <title>Viraj signature</title>
+  <g stroke="#f3f0e8" stroke-width="2.7" stroke-linecap="round" stroke-linejoin="round">
+    <path class="signature" pathLength="1" d="M29 61C39 35 59 20 62 35C66 49 57 83 62 106C76 89 97 48 122 25C134 13 142 21 131 34C117 50 91 58 78 55 M100 91C107 79 113 66 112 67C104 82 104 96 115 91L129 74C131 70 134 68 131 77L124 94C138 76 148 67 154 73C157 78 150 82 148 80 M160 79C176 65 187 70 180 81C172 96 158 101 156 91C154 80 174 67 182 73L175 92C173 99 183 94 192 84L204 70C199 91 191 124 180 131C170 138 166 128 174 119C190 105 212 99 235 92 M105 57L108 53 M205 57L208 53"/>
+    <path class="underline" pathLength="1" d="M82 115C143 108 231 102 308 105C325 106 335 110 322 114" stroke="#e16c4e" stroke-width="1.8"/>
+  </g>
+  <style>
+    .signature{stroke-dasharray:1;stroke-dashoffset:1;animation:write 2.6s cubic-bezier(.23,1,.32,1) infinite}
+    .underline{stroke-dasharray:1;stroke-dashoffset:1;animation:underline 2.6s cubic-bezier(.23,1,.32,1) infinite}
+    @keyframes write{0%{stroke-dashoffset:1;opacity:1}65%,88%{stroke-dashoffset:0;opacity:1}100%{stroke-dashoffset:0;opacity:0}}
+    @keyframes underline{0%,45%{stroke-dashoffset:1;opacity:1}78%,88%{stroke-dashoffset:0;opacity:1}100%{stroke-dashoffset:0;opacity:0}}
+    @media(prefers-reduced-motion:reduce){.signature,.underline{animation:none;stroke-dashoffset:0}}
+  </style>
+</svg>

@@ -1,3 +1,4 @@
+import portrait from '@/assets/viraj-profile2.webp';
 import { MapPin, Briefcase } from 'lucide-react';
 import { useReveal, stagger } from '@/hooks/use-reveal';
 import { SectionHeading } from '@/components/SectionHeading';
@@ -20,10 +21,10 @@ const timeline = [
 ];
 
 const specializations = [
-  'Backend Engineering',
-  'Enterprise Automation',
-  'AI/ML Systems',
-  'Full-Stack Development',
+  { title: 'Backend Engineering', description: 'APIs, authentication, and database integrations that support complex business operations.', detail: 'APIs / Authentication / Databases' },
+  { title: 'Enterprise Automation', description: 'Turning manual calculations and approval workflows into dependable internal systems.', detail: 'Incentives / Commissions / Workflows' },
+  { title: 'AI/ML Systems', description: 'Applying machine learning to data, predictions, and AI-powered applications.', detail: 'Machine learning / Applied AI' },
+  { title: 'Full-Stack Development', description: 'Connecting responsive interfaces with the services and data behind them.', detail: 'Interfaces / Services / Integration' },
 ];
 
 export const AboutSection = () => {
@@ -33,14 +34,14 @@ export const AboutSection = () => {
     <section id="about" ref={revealRef} className="scroll-mt-24 py-24 md:py-32">
       <div className="container">
         <SectionHeading
-          title="About"
+          title="Behind the systems"
           lead="Software engineer working across backend systems and applied machine learning."
         />
 
         <div className="mt-16 grid gap-12 lg:grid-cols-[1fr_1.1fr] lg:gap-16">
           {/* ── Bio ─────────────────────────────────────────────── */}
-          <div data-reveal>
-            <h3 className="heading-3 mb-4">Hello, I'm Viraj</h3>
+          <div data-reveal className="about-bio">
+            <img src={portrait} alt="Viraj Induruwa" className="about-portrait" loading="lazy" width={520} height={620}/><div className="about-bio-copy"><h3 className="heading-3 mb-4">Hello, I'm Viraj</h3>
 
             <div className="prose-body space-y-4">
               <p>
@@ -56,6 +57,7 @@ export const AboutSection = () => {
               </p>
             </div>
 
+            </div>
             <dl className="mt-8 grid gap-3 sm:grid-cols-2">
               <div className="panel flex items-center gap-3 px-4 py-3">
                 <MapPin className="h-4 w-4 shrink-0 text-primary" aria-hidden="true" />
@@ -73,16 +75,7 @@ export const AboutSection = () => {
               </div>
             </dl>
 
-            <div className="mt-8">
-              <h4 className="label-mono mb-3">specializations</h4>
-              <ul className="flex flex-wrap gap-2">
-                {specializations.map((item) => (
-                  <li key={item} className="chip">
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </div>
+
           </div>
 
           {/* ── Career timeline ─────────────────────────────────── */}
@@ -120,7 +113,27 @@ export const AboutSection = () => {
             </ol>
           </div>
         </div>
+
+        <div className="specializations" aria-labelledby="specializations-title">
+          <div data-reveal className="specializations-intro">
+            <p className="label-mono">Specializations</p>
+            <h3 id="specializations-title">Where I<br /><em>go deep.</em></h3>
+          </div>
+          <ul className="specializations-list">
+            {specializations.map((item, index) => (
+              <li key={item.title} data-reveal style={stagger(index, 70)} className="specialization-item">
+                <span className="specialization-number" aria-hidden="true">0{index + 1}</span>
+                <div>
+                  <h4>{item.title}</h4>
+                  <p>{item.description}</p>
+                  <span className="specialization-detail">{item.detail}</span>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
     </section>
   );
 };
+

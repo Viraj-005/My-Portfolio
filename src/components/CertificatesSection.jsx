@@ -19,6 +19,10 @@ import cert12 from '@/assets/UIUX FSD.webp';
 import cert13 from '@/assets/Web_Design_for_Beginners_2023.webp';
 import cert14 from '@/assets/Cloud Computing.webp';
 
+import cert15 from '@/assets/datacamp-llm.webp';
+import cert16 from '@/assets/datacamp-intermediate-python.webp';
+import cert17 from '@/assets/datacamp-introduction-to-python.webp';
+
 /**
  * Was a 14-slide autoplaying carousel with emoji play/pause controls. Autoplay
  * carousels move content out from under the reader, and only one certificate
@@ -26,6 +30,9 @@ import cert14 from '@/assets/Cloud Computing.webp';
  * the full image on demand.
  */
 const certificates = [
+  { id: 15, title: 'Large Language Models (LLMs) Concepts', image: cert15, issuer: 'DataCamp', date: '2025', description: 'Completed the 2-hour Large Language Models (LLMs) Concepts course on October 14, 2025.' },
+  { id: 16, title: 'Intermediate Python', image: cert16, issuer: 'DataCamp', date: '2025', description: 'Completed the 4-hour Intermediate Python course on October 12, 2025.' },
+  { id: 17, title: 'Introduction to Python', image: cert17, issuer: 'DataCamp', date: '2025', description: 'Completed the 4-hour Introduction to Python course on October 4, 2025.' },
   {
     id: 1,
     title: 'Data Analytics Job Simulation',

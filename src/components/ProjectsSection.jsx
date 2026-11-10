@@ -273,157 +273,37 @@ const projects = [
 // the grid. Keeps the section from reading as one undifferentiated card wall.
 const LEAD_COUNT = 1;
 const FEATURED_COUNT = 2;
-const INITIAL_REST = 6;
+const INITIAL_REST = 3;
 
-const StatusChip = ({ status }) => (
-  <span className="chip bg-background/80 backdrop-blur">
-    <span className="relative flex h-1.5 w-1.5" aria-hidden="true">
-      <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-70" />
-      <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-accent" />
-    </span>
-    {status}
-  </span>
-);
+const StatusChip = ({ status }) => <span className="chip">{status}</span>;
 
-/**
- * The lead project. Full-bleed banner above a two-column body, so it reads as
- * clearly more important than the featured pair without just being a bigger
- * copy of the same card.
- */
 const LeadProjectCard = ({ project, onOpen }) => (
-  <article
-    data-reveal
-    className="panel-interactive group relative overflow-hidden"
-  >
-    <div
-      className="relative overflow-hidden border-b border-border"
-      // Native ratio: this banner carries logos in the far corners, so cropping
-      // it to a standard card ratio would cut them off.
-      style={{ aspectRatio: project.imageRatio ?? '16 / 9' }}
-    >
-      <img
-        src={project.image}
-        alt=""
-        fetchPriority="high"
-        decoding="async"
-        className="h-full w-full object-cover transition-transform duration-[600ms] ease-[--ease-out-expo] group-hover:scale-[1.02]"
-      />
-      <div className="absolute left-3 top-3 flex flex-wrap gap-1.5">
-        <span className="chip bg-background/80 backdrop-blur">{project.category}</span>
-        {project.status && <StatusChip status={project.status} />}
-      </div>
-    </div>
-
-    <div className="gap-10 p-6 md:p-8 lg:grid lg:grid-cols-[1.5fr_1fr]">
-      <div>
-        <h3 className="heading-2">
-          <button
-            type="button"
-            onClick={() => onOpen(project.id)}
-            className="stretch-target cursor-pointer text-left transition-colors duration-[--duration-fast] group-hover:text-primary"
-          >
-            {project.title}
-          </button>
-        </h3>
-
-        <p className="prose-body mt-3">{project.description}</p>
-
-        <ul className="mt-6 flex flex-wrap gap-1.5">
-          {project.technologies.map((tech) => (
-            <li key={tech} className="chip">
-              {tech}
-            </li>
-          ))}
-        </ul>
-      </div>
-
-      {project.metrics && (
-        <dl className="mt-8 grid grid-cols-2 gap-x-6 gap-y-4 border-t border-border pt-6 sm:grid-cols-3 lg:mt-0 lg:grid-cols-1 lg:border-l lg:border-t-0 lg:pl-10 lg:pt-0">
-          {project.metrics.map((metric) => (
-            <div key={metric.label}>
-              <dd className="text-2xl font-semibold tabular">{metric.value}</dd>
-              <dt className="label-mono mt-0.5">{metric.label}</dt>
-            </div>
-          ))}
-        </dl>
-      )}
-    </div>
+  <article className="case-study lead-case" data-reveal>
+    <div className="case-visual"><img src={project.image} alt={project.title + ' project artwork'} loading="lazy" width="1600" height="900"/>{(project.githubUrl || project.liveUrl) && <span className="case-open" aria-hidden="true"><ArrowUpRight size={28}/></span>}</div>
+    <div className="case-caption"><div><span className="case-category">{project.category}{project.status ? ' / ' + project.status : ''}</span><h3><button type="button" className="stretch-target" onClick={() => onOpen(project.id)}>{project.title}</button></h3></div><div><p>{project.description}</p><div className="case-tech">{project.technologies.slice(0,4).join(' / ')}</div></div></div>
   </article>
 );
-
-const ProjectCard = ({ project, featured, onOpen, index }) => (
-  <article
-    data-reveal
-    style={stagger(index, 60)}
-    className="panel-interactive group relative flex flex-col overflow-hidden"
-  >
-    <div className={`relative overflow-hidden ${featured ? 'aspect-[16/9]' : 'aspect-[16/10]'}`}>
-      <img
-        src={project.image}
-        alt=""
-        loading="lazy"
-        decoding="async"
-        className="h-full w-full object-cover transition-transform duration-[600ms] ease-[--ease-out-expo] group-hover:scale-[1.04]"
-      />
-      <div
-        aria-hidden="true"
-        className="absolute inset-0 bg-gradient-to-t from-surface via-surface/10 to-transparent opacity-70"
-      />
-      <div className="absolute left-3 top-3 flex flex-wrap gap-1.5">
-        <span className="chip bg-background/80 backdrop-blur">{project.category}</span>
-        {project.status && <StatusChip status={project.status} />}
-      </div>
-    </div>
-
-    <div className={`flex flex-1 flex-col ${featured ? 'p-6' : 'p-5'}`}>
-      <h3 className={featured ? 'heading-3' : 'text-base font-semibold'}>
-        <button
-          type="button"
-          onClick={() => onOpen(project.id)}
-          className="stretch-target cursor-pointer text-left transition-colors duration-[--duration-fast] group-hover:text-primary"
-        >
-          {project.title}
-        </button>
-      </h3>
-
-      <p className="prose-body mt-2 text-sm">{project.description}</p>
-
-      {featured && project.metrics && (
-        <dl className="mt-5 flex flex-wrap gap-x-6 gap-y-3 border-t border-border pt-4">
-          {project.metrics.map((metric) => (
-            <div key={metric.label}>
-              <dt className="label-mono">{metric.label}</dt>
-              <dd className="text-lg font-semibold tabular">{metric.value}</dd>
-            </div>
-          ))}
-        </dl>
-      )}
-
-      <ul className="mt-auto flex flex-wrap gap-1.5 pt-5">
-        {project.technologies.slice(0, featured ? 5 : 3).map((tech) => (
-          <li key={tech} className="chip">
-            {tech}
-          </li>
-        ))}
-        {project.technologies.length > (featured ? 5 : 3) && (
-          <li className="chip">+{project.technologies.length - (featured ? 5 : 3)}</li>
-        )}
-      </ul>
-    </div>
+const ProjectCard = ({project,featured,onOpen,index}) => (
+  <article className={featured ? 'case-study featured-case' : 'archive-case'} data-reveal style={stagger(index,70)}>
+    <div className="case-visual"><img src={project.image} alt={project.title + ' project artwork'} loading="lazy" width="900" height="600"/>{(project.githubUrl || project.liveUrl) && <span className="case-open" aria-hidden="true"><ArrowUpRight size={26}/></span>}</div>
+    <div className="case-caption"><div><span className="case-category">{project.category}</span><h3><button type="button" className="stretch-target" onClick={() => onOpen(project.id)}>{project.title}</button></h3></div><p>{project.description}</p></div>
   </article>
 );
 
 export const ProjectsSection = () => {
   const [selectedId, setSelectedId] = useState(null);
   const [showAll, setShowAll] = useState(false);
+  const [category, setCategory] = useState('All');
+  const categories = ['All', ...new Set(projects.map(project => project.category))];
+  const filtered = category === 'All' ? projects : projects.filter(project => project.category === category);
   const revealRef = useReveal();
 
   const gridStart = LEAD_COUNT + FEATURED_COUNT;
-  const lead = projects.slice(0, LEAD_COUNT);
-  const featured = projects.slice(LEAD_COUNT, gridStart);
+  const lead = filtered.slice(0, LEAD_COUNT);
+  const featured = filtered.slice(LEAD_COUNT, gridStart);
   const rest = showAll
-    ? projects.slice(gridStart)
-    : projects.slice(gridStart, gridStart + INITIAL_REST);
+    ? filtered.slice(gridStart)
+    : filtered.slice(gridStart, gridStart + INITIAL_REST);
 
   const selected = projects.find((project) => project.id === selectedId) ?? null;
 
@@ -431,11 +311,11 @@ export const ProjectsSection = () => {
     <section id="projects" ref={revealRef} className="scroll-mt-24 py-24 md:py-32">
       <div className="container">
         <SectionHeading
-          title="Selected work"
+          title="Selected works"
           lead="Enterprise automation at Sri Lanka Telecom, machine learning applied to medical imaging, and the tools built along the way."
         />
 
-        {/* Lead: full width, the current flagship */}
+        <div className="work-filters" aria-label="Filter projects">{categories.map(item => <button key={item} type="button" aria-pressed={category === item} onClick={() => { setCategory(item); setShowAll(false); }}>{item}</button>)}</div><p className="work-count" aria-live="polite">{filtered.length} projects / {category}</p>
         <div className="mt-14">
           {lead.map((project) => (
             <LeadProjectCard
@@ -447,7 +327,7 @@ export const ProjectsSection = () => {
         </div>
 
         {/* Featured: larger, with the numbers that matter */}
-        <div className="mt-6 grid gap-6 lg:grid-cols-2">
+        <div className="featured-work">
           {featured.map((project, index) => (
             <ProjectCard
               key={project.id}
@@ -460,7 +340,7 @@ export const ProjectsSection = () => {
         </div>
 
         {/* The rest */}
-        <div className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="project-archive">
           {rest.map((project, index) => (
             <ProjectCard
               key={project.id}
@@ -472,7 +352,7 @@ export const ProjectsSection = () => {
         </div>
 
         <div className="mt-12 flex flex-wrap items-center justify-center gap-3">
-          {projects.length > gridStart + INITIAL_REST && (
+          {filtered.length > gridStart + INITIAL_REST && (
             <button
               type="button"
               onClick={() => setShowAll((prev) => !prev)}
@@ -481,7 +361,7 @@ export const ProjectsSection = () => {
             >
               {showAll
                 ? 'Show fewer'
-                : `Show all ${projects.length} projects`}
+                : `Show all ${filtered.length} projects`}
               <ArrowRight
                 className={`h-4 w-4 transition-transform duration-[--duration-base] ease-[--ease-out-expo] ${
                   showAll ? '-rotate-90' : 'rotate-90'
@@ -508,23 +388,20 @@ export const ProjectsSection = () => {
         open={Boolean(selected)}
         onClose={() => setSelectedId(null)}
         labelledBy="project-dialog-title"
-        className="max-w-2xl"
+        className="project-modal max-w-2xl"
       >
         {selected && (
           <>
-            <div className="relative aspect-[16/9] shrink-0 overflow-hidden">
+            <div className="project-detail-image relative shrink-0 overflow-hidden">
               <img
                 src={selected.image}
-                alt=""
-                className="h-full w-full object-cover"
+                alt={selected.title + ' project artwork'}
+                className="project-detail-artwork"
               />
-              <div
-                aria-hidden="true"
-                className="absolute inset-0 bg-gradient-to-t from-surface to-transparent"
-              />
+
             </div>
 
-            <div className="overflow-y-auto p-6 md:p-8">
+            <div className="project-detail-copy p-6 md:p-8">
               <div className="flex flex-wrap gap-1.5">
                 <span className="chip">{selected.category}</span>
                 {selected.status && <StatusChip status={selected.status} />}
@@ -612,3 +489,5 @@ export const ProjectsSection = () => {
     </section>
   );
 };
+
+
