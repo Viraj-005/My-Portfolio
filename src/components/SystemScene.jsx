@@ -42,7 +42,7 @@ export default function SystemScene({ paused = false, onReady }) {
       const rim=new T.DirectionalLight(0xff6a46,3);rim.position.set(4,-2,-4);scene.add(rim);
       const media=matchMedia('(prefers-reduced-motion: reduce)');
       let visible=true, frame=0, pointerX=0, pointerY=0, scroll=0, last=0;
-      const resize=new ResizeObserver(()=>{const {width,height}=element.getBoundingClientRect();renderer.setSize(width,height);camera.aspect=width/height;assembly.scale.setScalar(innerWidth < 768 ? 1.65 : 1);camera.updateProjectionMatrix();render();});
+      const resize=new ResizeObserver(()=>{const {width,height}=element.getBoundingClientRect();renderer.setSize(width,height);camera.aspect=width/height;assembly.scale.setScalar(innerWidth < 768 ? Math.min(1.25, width / height * 1.25) : 1);camera.updateProjectionMatrix();render();});
       let announced = false;
       const render=()=>{renderer.render(scene,camera);if(!announced){announced=true;readyRef.current?.();}};
       const move=e=>{if(e.pointerType==='mouse'&&!media.matches){pointerX=(e.clientX/innerWidth-.5)*.18;pointerY=(e.clientY/innerHeight-.5)*.12;}};
